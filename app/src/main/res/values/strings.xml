@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">GuardianAPI</string>
+
+    <string name="no_guardian">No guardian found.</string>
+
+    <string name="no_internet_connection">No internet connection.</string>
+</resources>
