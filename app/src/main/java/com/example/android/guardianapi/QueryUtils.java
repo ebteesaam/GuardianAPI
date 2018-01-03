@@ -22,9 +22,13 @@ import java.util.List;
  * Created by ebtesam on 1/2/2018 AD.
  */
 
-public class QueryUtils  {
-    /** Tag for the log messages */
+public class QueryUtils {
+    private static final int CONNECT_TIMEOUT = 15000;
+    /**
+     * Tag for the log messages
+     */
     private static final String LOG_TAG = QueryUtils.class.getSimpleName();
+
     private QueryUtils() {
     }
 
@@ -86,7 +90,7 @@ public class QueryUtils  {
         try {
             urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setReadTimeout(10000 /* milliseconds */);
-            urlConnection.setConnectTimeout(15000 /* milliseconds */);
+            urlConnection.setConnectTimeout(CONNECT_TIMEOUT /* milliseconds */);
             urlConnection.setRequestMethod("GET");
             urlConnection.connect();
 
@@ -166,14 +170,16 @@ public class QueryUtils  {
                 // Extract the value for the key called "mag"
                 String webTitle = current.getString("webTitle");
 
-                String sectionName  = current.getString("sectionName");
+                String sectionName = current.getString("sectionName");
 
                 // Extract the value for the key called "url"
                 String url = current.getString("webUrl");
 
+                long webPublicationDate = current.getLong("webPublicationDate");
+
                 // Create a new {@link Earthquake} object with the magnitude, location, time,
                 // and url from the JSON response.
-                Guardian guardian = new Guardian(sectionName,webTitle,url);
+                Guardian guardian = new Guardian(sectionName, webTitle, url, webPublicationDate);
 
                 // Add the new {@link Earthquake} to the list of earthquakes.
                 guardians.add(guardian);

@@ -1,4 +1,5 @@
 package com.example.android.guardianapi;
+
 import android.app.LoaderManager;
 import android.app.LoaderManager.LoaderCallbacks;
 import android.content.Context;
@@ -18,26 +19,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GuardianActivity extends AppCompatActivity implements LoaderCallbacks<List<Guardian>> {
-    /** Adapter for the list of earthquakes */
-    private GuardianAdapter mAdapter;
-    private TextView mEmptyStateTextView;
     private static final String LOG_TAG = GuardianActivity.class.getName();
     private static final int LOADER_ID = 1;
-    /** URL  */
+    /**
+     * URL
+     */
     private static final String USGS_REQUEST_URL =
             "http://content.guardianapis.com/search?q=debates&api-key=test";
-
+    /**
+     * Adapter for the list of earthquakes
+     */
+    private GuardianAdapter mAdapter;
+    private TextView mEmptyStateTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guardian);
 
-        ListView listView = (ListView) findViewById(R.id.list);
+        ListView listView = findViewById(R.id.list);
 
-        mAdapter=new GuardianAdapter(this,new ArrayList<Guardian>());
+        mAdapter = new GuardianAdapter(this, new ArrayList<Guardian>());
 
-        mEmptyStateTextView = (TextView) findViewById(R.id.empty_view);
+        mEmptyStateTextView = findViewById(R.id.empty_view);
         listView.setEmptyView(mEmptyStateTextView);
 
         listView.setAdapter(mAdapter);
@@ -62,7 +66,7 @@ public class GuardianActivity extends AppCompatActivity implements LoaderCallbac
         // Get a reference to the ConnectivityManager to check state of network connectivity
         ConnectivityManager connMgr = (ConnectivityManager)
                 getSystemService(Context.CONNECTIVITY_SERVICE);
-// Get details on the currently active default data network
+        // Get details on the currently active default data network
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
 
         // If there is a network connection, fetch data
@@ -106,7 +110,7 @@ public class GuardianActivity extends AppCompatActivity implements LoaderCallbac
 
         // If there is a valid list of {@link Earthquake}s, then add them to the adapter's
         // data set. This will trigger the ListView to update.
-        if ( guardians != null && !guardians.isEmpty()) {
+        if (guardians != null && !guardians.isEmpty()) {
             mAdapter.addAll(guardians);
         }
         // If there is a valid list of {@link Earthquake}s, then add them to the adapter's
@@ -116,7 +120,7 @@ public class GuardianActivity extends AppCompatActivity implements LoaderCallbac
 
     @Override
     public void onLoaderReset(Loader<List<Guardian>> loader) {
-      // Loader reset, so we can clear out our existing data.
+        // Loader reset, so we can clear out our existing data.
         mAdapter.clear();
     }
 

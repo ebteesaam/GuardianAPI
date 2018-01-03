@@ -5,13 +5,18 @@
     android:orientation="vertical">
 
     <TextView
+        android:id="@+id/sectionName"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:id="@+id/sectionName"/>
+        android:layout_height="match_parent" />
 
     <TextView
+        android:id="@+id/webTitle"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:id="@+id/webTitle"/>
+        android:layout_height="match_parent" />
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" />
 
 </LinearLayout>
