@@ -15,8 +15,12 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.Charset;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by ebtesam on 1/2/2018 AD.
@@ -54,7 +58,7 @@ public class QueryUtils {
             Log.e(LOG_TAG, "Problem making the HTTP request.", e);
         }
 
-        // Extract relevant fields from the JSON response and create a list of {@link Earthquake}s
+        // Extract relevant fields from the JSON response and create a list
         List<Guardian> guardians = extractFeatureFromJson(jsonResponse);
 
         // Return the list of {@link Earthquake}s
@@ -175,11 +179,14 @@ public class QueryUtils {
                 // Extract the value for the key called "url"
                 String url = current.getString("webUrl");
 
-                long webPublicationDate = current.getLong("webPublicationDate");
+                String webPublicationDate = current.getString("webPublicationDate");
+                webPublicationDate = formatDate(webPublicationDate);
 
-                // Create a new {@link Earthquake} object with the magnitude, location, time,
+                String Time = current.getString("webPublicationDate");
+                Time = formatTime(Time);
+
                 // and url from the JSON response.
-                Guardian guardian = new Guardian(sectionName, webTitle, url, webPublicationDate);
+                Guardian guardian = new Guardian(sectionName, webTitle, url, webPublicationDate, Time);
 
                 // Add the new {@link Earthquake} to the list of earthquakes.
                 guardians.add(guardian);
@@ -194,6 +201,34 @@ public class QueryUtils {
 
         // Return the list
         return guardians;
+    }
+
+    private static String formatDate(String rawDate) {
+        String jsonDatePattern = "yyyy-MM-dd'T'HH:mm:ss'Z'";
+        SimpleDateFormat jsonFormatter = new SimpleDateFormat(jsonDatePattern, Locale.US);
+        try {
+            Date parsedJsonDate = jsonFormatter.parse(rawDate);
+            String finalDatePattern = "MMM d, yyy";
+            SimpleDateFormat finalDateFormatter = new SimpleDateFormat(finalDatePattern, Locale.US);
+            return finalDateFormatter.format(parsedJsonDate);
+        } catch (ParseException e) {
+            Log.e("QueryUtils", "Error parsing JSON date: ", e);
+            return "";
+        }
+    }
+
+    private static String formatTime(String rawDate) {
+        String jsonDatePattern = "yyyy-MM-dd'T'HH:mm:ss'Z'";
+        SimpleDateFormat jsonFormatter = new SimpleDateFormat(jsonDatePattern, Locale.US);
+        try {
+            Date parsedJsonDate = jsonFormatter.parse(rawDate);
+            String finalDatePattern = "HH:mm";
+            SimpleDateFormat finalDateFormatter = new SimpleDateFormat(finalDatePattern, Locale.US);
+            return finalDateFormatter.format(parsedJsonDate);
+        } catch (ParseException e) {
+            Log.e("QueryUtils", "Error parsing JSON time: ", e);
+            return "";
+        }
     }
 
 

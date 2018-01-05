@@ -11,18 +11,24 @@ public class Guardian {
     private String webTitle;
 
     private String Url;
+    private String Time;
 
-    private long webPublicationDate;
+    private String webPublicationDate;
 
-    public Guardian(String sectionName, String webTitle, String url, long webPublicationDate) {
+    public Guardian(String sectionName, String webTitle, String url, String webPublicationDate, String Time) {
         this.sectionName = sectionName;
         this.webTitle = webTitle;
         Url = url;
         this.webPublicationDate = webPublicationDate;
+        this.Time = Time;
     }
 
     public String getSectionName() {
         return sectionName;
+    }
+
+    public String getTime() {
+        return Time;
     }
 
     public String getWebTitle() {
@@ -33,7 +39,7 @@ public class Guardian {
         return Url;
     }
 
-    public long getWebPublicationDate() {
+    public String getWebPublicationDate() {
         return webPublicationDate;
     }
 

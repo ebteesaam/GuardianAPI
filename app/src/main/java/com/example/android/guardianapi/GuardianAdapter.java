@@ -3,15 +3,18 @@ package com.example.android.guardianapi;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by ebtesam on 1/2/2018 AD.
@@ -41,23 +44,18 @@ public class GuardianAdapter extends ArrayAdapter<Guardian> {
         TextView sectionName = listItemView.findViewById(R.id.sectionName);
         sectionName.setText(guardian.getSectionName());
 
-        // Create a new Date object from the time in milliseconds of the earthquake
-        Date dateObject = new Date(guardian.getWebPublicationDate());
+        // Create a new Date object from the time
+
 
         TextView dateView = listItemView.findViewById(R.id.date);
+        dateView.setText(guardian.getWebPublicationDate());
 
-        String formattedDate = formatDate(dateObject);
-
-        dateView.setText(formattedDate);
+        // Find the TextView with view ID time
+        TextView timeView = listItemView.findViewById(R.id.time);
+        timeView.setText(guardian.getTime());
 
         return listItemView;
     }
 
-    /**
-     * Return the formatted date string (i.e. "Mar 3, 1984") from a Date object.
-     */
-    private String formatDate(Date dateObject) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("LLL dd, yyyy");
-        return dateFormat.format(dateObject);
-    }
+
 }
