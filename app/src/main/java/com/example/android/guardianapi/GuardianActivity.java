@@ -129,9 +129,8 @@ public class GuardianActivity extends AppCompatActivity implements LoaderCallbac
         // buildUpon prepares the baseUri that we just parsed so we can add query parameters to it
         Uri.Builder uriBuilder = baseUri.buildUpon();
 
-        // Append query parameter and its value. For example, the `format=geojson`
+        // Append query parameter and its value.
         uriBuilder.appendQueryParameter("orderby", orderBy);
-
         // Return the completed uri
         return new GuardianLoader(this, uriBuilder.toString());
 
