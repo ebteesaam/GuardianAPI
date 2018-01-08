@@ -24,10 +24,11 @@ public class SettingActivity extends AppCompatActivity {
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            addPreferencesFromResource(R.xml.settings_main);
-
-            Preference byOrder = findPreference(getString(R.string.settings_order_by_key));
-            bindPreferenceSummaryToValue(byOrder);
+            addPreferencesFromResource(R.xml.settings_main);  // 
+            Preference min_type = findPreference(getString(R.string.settings_min_type_key));
+            bindPreferenceSummaryToValue(min_type);
+            Preference orderBy = findPreference(getString(R.string.settings_order_by_key));
+            bindPreferenceSummaryToValue(orderBy);
         }
 
         private void bindPreferenceSummaryToValue(Preference preference) {

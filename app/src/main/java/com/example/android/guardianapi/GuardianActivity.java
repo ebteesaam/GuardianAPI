@@ -122,6 +122,10 @@ public class GuardianActivity extends AppCompatActivity implements LoaderCallbac
                 getString(R.string.settings_order_by_key),
                 getString(R.string.settings_order_by_default)
         );
+        String min_type = sharedPrefs.getString(
+                getString(R.string.settings_min_type_key),
+                getString(R.string.settings_min_type_default)
+        );
 
         // parse breaks apart the URI string that's passed into its parameter
         Uri baseUri = Uri.parse(USGS_REQUEST_URL);
@@ -131,7 +135,8 @@ public class GuardianActivity extends AppCompatActivity implements LoaderCallbac
 
         // Append query parameter and its value...
         uriBuilder.appendQueryParameter("order-by", "newest");
-
+        uriBuilder.appendQueryParameter("min_type", min_type);
+        uriBuilder.appendQueryParameter("min_type", "type");
 
         uriBuilder.appendQueryParameter("orderby", orderBy);
         // Return the completed uri
