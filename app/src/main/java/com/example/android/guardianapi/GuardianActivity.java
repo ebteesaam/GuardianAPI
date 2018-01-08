@@ -29,7 +29,7 @@ public class GuardianActivity extends AppCompatActivity implements LoaderCallbac
      * URL
      */
     private static final String USGS_REQUEST_URL =
-            "http://content.guardianapis.com/search?q=debates&api-key=test";
+            "http://content.guardianapis.com/search?q=debates&api-key=test&show-fields=byline";
     /**
      * Adapter for the list of earthquakes
      */
@@ -130,6 +130,9 @@ public class GuardianActivity extends AppCompatActivity implements LoaderCallbac
         Uri.Builder uriBuilder = baseUri.buildUpon();
 
         // Append query parameter and its value...
+        uriBuilder.appendQueryParameter("order-by", "newest");
+
+
         uriBuilder.appendQueryParameter("orderby", orderBy);
         // Return the completed uri
         return new GuardianLoader(this, uriBuilder.toString());

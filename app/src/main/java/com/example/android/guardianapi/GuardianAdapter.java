@@ -54,6 +54,9 @@ public class GuardianAdapter extends ArrayAdapter<Guardian> {
         TextView timeView = listItemView.findViewById(R.id.time);
         timeView.setText(guardian.getTime());
 
+        TextView title = listItemView.findViewById(R.id.title);
+        title.setText(guardian.getTitle());
+
         return listItemView;
     }
 

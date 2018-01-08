@@ -12,6 +12,7 @@ public class Guardian {
 
     private String Url;
     private String Time;
+    private String Title;
 
     private String webPublicationDate;
 
@@ -21,6 +22,19 @@ public class Guardian {
         Url = url;
         this.webPublicationDate = webPublicationDate;
         this.Time = Time;
+    }
+
+    public Guardian(String sectionName, String webTitle, String url, String title, String webPublicationDate, String time) {
+        this.sectionName = sectionName;
+        this.webTitle = webTitle;
+        Url = url;
+        Time = time;
+        Title = title;
+        this.webPublicationDate = webPublicationDate;
+    }
+
+    public String getTitle() {
+        return Title;
     }
 
     public String getSectionName() {

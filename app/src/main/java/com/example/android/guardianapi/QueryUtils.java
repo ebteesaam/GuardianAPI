@@ -184,12 +184,21 @@ public class QueryUtils {
 
                 String Time = current.getString("webPublicationDate");
                 Time = formatTime(Time);
+                JSONObject field = current.getJSONObject("fields");
+                String title = field.getString("byline");
+                if (title != null) {
+                    // and url from the JSON response.
+                    Guardian guardian = new Guardian(sectionName, webTitle, url, title, webPublicationDate, Time);
 
-                // and url from the JSON response.
-                Guardian guardian = new Guardian(sectionName, webTitle, url, webPublicationDate, Time);
+                    // Add the new {@link Earthquake} to the list of earthquakes.
+                    guardians.add(guardian);
+                } else {
+                    // and url from the JSON response.
+                    Guardian guardian = new Guardian(sectionName, webTitle, url, webPublicationDate, Time);
 
-                // Add the new {@link Earthquake} to the list of earthquakes.
-                guardians.add(guardian);
+                    // Add the new {@link Earthquake} to the list of earthquakes.
+                    guardians.add(guardian);
+                }
             }
 
         } catch (JSONException e) {
