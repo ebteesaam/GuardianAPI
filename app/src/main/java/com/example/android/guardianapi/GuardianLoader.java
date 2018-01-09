@@ -29,7 +29,7 @@ public class GuardianLoader extends AsyncTaskLoader<List<Guardian>> {
             return null;
         }
         // Perform the network request, parse the response, and extract a list of earthquakes.
-        List<Guardian> guardians= QueryUtils.fetchEarthquakeData(mUrl);
+        List<Guardian> guardians = QueryUtils.fetchGuardianData(mUrl);
         return guardians;
     }
 }

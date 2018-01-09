@@ -10,31 +10,31 @@ public class Guardian {
 
     private String webTitle;
 
-    private String Url;
-    private String Time;
-    private String Title;
+    private String url;
+    private String time;
+    private String title;
 
     private String webPublicationDate;
 
     public Guardian(String sectionName, String webTitle, String url, String webPublicationDate, String Time) {
         this.sectionName = sectionName;
         this.webTitle = webTitle;
-        Url = url;
+        this.url = url;
         this.webPublicationDate = webPublicationDate;
-        this.Time = Time;
+        this.time = Time;
     }
 
     public Guardian(String sectionName, String webTitle, String url, String title, String webPublicationDate, String time) {
         this.sectionName = sectionName;
         this.webTitle = webTitle;
-        Url = url;
-        Time = time;
-        Title = title;
+        this.url = url;
+        this.time = time;
+        this.title = title;
         this.webPublicationDate = webPublicationDate;
     }
 
     public String getTitle() {
-        return Title;
+        return title;
     }
 
     public String getSectionName() {
@@ -42,7 +42,7 @@ public class Guardian {
     }
 
     public String getTime() {
-        return Time;
+        return time;
     }
 
     public String getWebTitle() {
@@ -50,7 +50,7 @@ public class Guardian {
     }
 
     public String getUrl() {
-        return Url;
+        return url;
     }
 
     public String getWebPublicationDate() {

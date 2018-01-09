@@ -31,7 +31,7 @@ public class GuardianActivity extends AppCompatActivity implements LoaderCallbac
     private static final String USGS_REQUEST_URL =
             "http://content.guardianapis.com/search?q=debates&api-key=test&show-fields=byline";
     /**
-     * Adapter for the list of earthquakes
+     * Adapter for the list
      */
     private GuardianAdapter mAdapter;
     private TextView mEmptyStateTextView;
@@ -122,10 +122,6 @@ public class GuardianActivity extends AppCompatActivity implements LoaderCallbac
                 getString(R.string.settings_order_by_key),
                 getString(R.string.settings_order_by_default)
         );
-        String min_type = sharedPrefs.getString(
-                getString(R.string.settings_min_type_key),
-                getString(R.string.settings_min_type_default)
-        );
 
         // parse breaks apart the URI string that's passed into its parameter
         Uri baseUri = Uri.parse(USGS_REQUEST_URL);
@@ -134,9 +130,11 @@ public class GuardianActivity extends AppCompatActivity implements LoaderCallbac
         Uri.Builder uriBuilder = baseUri.buildUpon();
 
         // Append query parameter and its value...
-        uriBuilder.appendQueryParameter("order-by", "newest");
-        uriBuilder.appendQueryParameter("min_type", min_type);
-        uriBuilder.appendQueryParameter("min_type", "type");
+//        uriBuilder.appendQueryParameter("order-by", "newest" );
+//        uriBuilder.appendQueryParameter("order-by", "relevance");
+//        uriBuilder.appendQueryParameter("order-by", "oldest");
+        // uriBuilder.appendQueryParameter("min_type", min_type);
+        // uriBuilder.appendQueryParameter("min_type", "type");
 
         uriBuilder.appendQueryParameter("orderby", orderBy);
         // Return the completed uri
@@ -152,7 +150,7 @@ public class GuardianActivity extends AppCompatActivity implements LoaderCallbac
         loadingIndicator.setVisibility(View.GONE);
 
         // Set empty state text to display "No earthquakes found."
-        mEmptyStateTextView.setText(R.string.no_guardian);
+        mEmptyStateTextView.setText(R.string.no_internet_connection);
 
         // Clear the adapter of previous earthquake data
         mAdapter.clear();

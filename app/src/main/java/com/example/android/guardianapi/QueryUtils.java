@@ -39,7 +39,7 @@ public class QueryUtils {
     /**
      * Query the USGS dataset and return a list of {@link Guardian} objects.
      */
-    public static List<Guardian> fetchEarthquakeData(String requestUrl) {
+    public static List<Guardian> fetchGuardianData(String requestUrl) {
 
         try {
             Thread.sleep(2000);
