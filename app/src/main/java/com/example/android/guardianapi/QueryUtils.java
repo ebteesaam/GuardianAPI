@@ -168,7 +168,9 @@ public class QueryUtils {
 
                 String webTitle = current.getString("webTitle");
 
-                String sectionName = current.getString("sectionName");
+                String sectionName = current.getString("type");
+
+
 
                 // Extract the value for the key called "url"
                 String url = current.getString("webUrl");

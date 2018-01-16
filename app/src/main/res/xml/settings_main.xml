@@ -7,5 +7,12 @@
         android:entryValues="@array/settings_order_by_values"
         android:key="@string/settings_order_by_key"
         android:title="@string/settings_order_by_label" />
+    <EditTextPreference
+        android:defaultValue="@string/settings_type_default"
+        android:inputType="text"
+        android:key="@string/settings_type_key"
+        android:selectAllOnFocus="true"
+        android:title="@string/settings_type_label" />
+
 
 </PreferenceScreen>

@@ -122,14 +122,20 @@ public class GuardianActivity extends AppCompatActivity implements LoaderCallbac
                 getString(R.string.settings_order_by_key),
                 getString(R.string.settings_order_by_default)
         );
+        String type = sharedPrefs.getString(
+                getString(R.string.settings_type_key),
+                getString(R.string.settings_type_default)
+        );
+
 
         // parse breaks apart the URI string that's passed into its parameter
         Uri baseUri = Uri.parse(USGS_REQUEST_URL_Guardian);
 
         // buildUpon prepares the baseUri that we just parsed so we can add query parameters to it
         Uri.Builder uriBuilder = baseUri.buildUpon();
-
+        uriBuilder.appendQueryParameter("response", "result");
         uriBuilder.appendQueryParameter("orderby", orderBy);
+        uriBuilder.appendQueryParameter("type", type);
         // Return the completed uri
         return new GuardianLoader(this, uriBuilder.toString());
 

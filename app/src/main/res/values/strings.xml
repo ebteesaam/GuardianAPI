@@ -15,6 +15,10 @@
     <string name="settings_order_by_default" translatable="false">@string/settings_order_by_most_recent_value</string>
 
 
+    <!-- Strings For Order-By Preference [CHAR LIMIT=30] -->
+    <string name="settings_type_label">type</string>
+    <string name="settings_type_key" translatable="false">Type</string>
+    <string name="settings_type_default" translatable="false">article</string>
 
     <!-- Label for order-by most recent option [CHAR LIMIT=20] -->
     <string name="settings_order_by_most_recent_label">Most Recent</string>
