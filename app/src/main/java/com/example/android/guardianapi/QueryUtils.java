@@ -36,9 +36,6 @@ public class QueryUtils {
     private QueryUtils() {
     }
 
-    /**
-     * Query the USGS dataset and return a list of {@link Guardian} objects.
-     */
     public static List<Guardian> fetchGuardianData(String requestUrl) {
 
         try {
@@ -58,10 +55,8 @@ public class QueryUtils {
             Log.e(LOG_TAG, "Problem making the HTTP request.", e);
         }
 
-        // Extract relevant fields from the JSON response and create a list
         List<Guardian> guardians = extractFeatureFromJson(jsonResponse);
 
-        // Return the list of {@link Earthquake}s
         return guardians;
     }
 
@@ -171,7 +166,6 @@ public class QueryUtils {
 
                 JSONObject current = guardianArray.getJSONObject(i);
 
-                // Extract the value for the key called "mag"
                 String webTitle = current.getString("webTitle");
 
                 String sectionName = current.getString("sectionName");
@@ -190,13 +184,11 @@ public class QueryUtils {
                     // and url from the JSON response.
                     Guardian guardian = new Guardian(sectionName, webTitle, url, title, webPublicationDate, Time);
 
-                    // Add the new {@link Earthquake} to the list of earthquakes.
                     guardians.add(guardian);
                 } else {
                     // and url from the JSON response.
                     Guardian guardian = new Guardian(sectionName, webTitle, url, webPublicationDate, Time);
 
-                    // Add the new {@link Earthquake} to the list of earthquakes.
                     guardians.add(guardian);
                 }
             }

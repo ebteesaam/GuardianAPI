@@ -28,7 +28,7 @@ public class GuardianActivity extends AppCompatActivity implements LoaderCallbac
     /**
      * URL
      */
-    private static final String USGS_REQUEST_URL =
+    private static final String USGS_REQUEST_URL_Guardian =
             "http://content.guardianapis.com/search?q=debates&api-key=test&show-fields=byline";
     /**
      * Adapter for the list
@@ -124,17 +124,10 @@ public class GuardianActivity extends AppCompatActivity implements LoaderCallbac
         );
 
         // parse breaks apart the URI string that's passed into its parameter
-        Uri baseUri = Uri.parse(USGS_REQUEST_URL);
+        Uri baseUri = Uri.parse(USGS_REQUEST_URL_Guardian);
 
         // buildUpon prepares the baseUri that we just parsed so we can add query parameters to it
         Uri.Builder uriBuilder = baseUri.buildUpon();
-
-        // Append query parameter and its value...
-//        uriBuilder.appendQueryParameter("order-by", "newest" );
-//        uriBuilder.appendQueryParameter("order-by", "relevance");
-//        uriBuilder.appendQueryParameter("order-by", "oldest");
-        // uriBuilder.appendQueryParameter("min_type", min_type);
-        // uriBuilder.appendQueryParameter("min_type", "type");
 
         uriBuilder.appendQueryParameter("orderby", orderBy);
         // Return the completed uri
@@ -149,19 +142,12 @@ public class GuardianActivity extends AppCompatActivity implements LoaderCallbac
         View loadingIndicator = findViewById(R.id.loading_indicator);
         loadingIndicator.setVisibility(View.GONE);
 
-        // Set empty state text to display "No earthquakes found."
-        mEmptyStateTextView.setText(R.string.no_internet_connection);
-
-        // Clear the adapter of previous earthquake data
+        // Set empty state text to display "No guardian found."
+        mEmptyStateTextView.setText(R.string.no_guardian);
         mAdapter.clear();
-
-        // If there is a valid list of {@link Earthquake}s, then add them to the adapter's
-        // data set. This will trigger the ListView to update.
         if (guardians != null && !guardians.isEmpty()) {
             mAdapter.addAll(guardians);
         }
-        // If there is a valid list of {@link Earthquake}s, then add them to the adapter's
-        // data set. This will trigger the ListView to update.
 
     }
 
